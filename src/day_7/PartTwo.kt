@@ -4,8 +4,6 @@ import java.io.File
 
 private const val FILE_PATH = "src/day_7/input.txt"
 
-private const val UPPER_LIMIT = 100000
-
 private const val TOTAL_SPACE = 70000000
 private const val MIN_SPACE = 30000000
 
