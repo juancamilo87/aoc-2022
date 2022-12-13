@@ -1,10 +1,15 @@
 package day_10
 
 import java.io.File
+import kotlin.system.measureTimeMillis
 
 private const val FILE_PATH = "src/day_10/input.txt"
 
 fun main() {
+  println("Time: ${measureTimeMillis { calculate() }}ms")
+}
+
+private fun calculate() {
   val inputFile = File(FILE_PATH)
   var currentCycle = 1
   var x = 2

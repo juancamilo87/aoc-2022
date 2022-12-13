@@ -1,10 +1,15 @@
 package day_12
 
 import java.io.File
+import kotlin.system.measureTimeMillis
 
 private const val FILE_PATH = "src/day_12/input.txt"
 
 fun main() {
+  println("Time: ${measureTimeMillis { calculate() }}ms")
+}
+
+private fun calculate() {
   val inputFile = File(FILE_PATH)
   val (map, start, end) = readFile(inputFile)
   println("shortest path: ${findShortestPath(map, start, end)}")

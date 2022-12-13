@@ -1,10 +1,15 @@
 package day_5
 
 import java.io.File
+import kotlin.system.measureTimeMillis
 
 private const val FILE_PATH = "src/day_5/input.txt"
 
 fun main() {
+  println("Time: ${measureTimeMillis { calculate() }}ms")
+}
+
+private fun calculate() {
   val inputFile = File(FILE_PATH)
   val totalStacks = (inputFile.useLines {
     it.firstOrNull { line -> line[0].toString().isBlank() }
@@ -32,7 +37,7 @@ fun main() {
       return@forEachLine
     }
     if (checkingMoves) {
-      val actions = items.split(" ");
+      val actions = items.split(" ")
       val (move, from, to) = actions.mapNotNull { it.toIntOrNull() }
       repeat(move) {
         val toMove = stacks[from - 1].removeLast()

@@ -1,10 +1,15 @@
 package day_3
 
 import java.io.File
+import kotlin.system.measureTimeMillis
 
 private const val FILE_PATH = "src/day_3/input.txt"
 
 fun main() {
+  println("Time: ${measureTimeMillis { calculate() }}ms")
+}
+
+private fun calculate() {
   val itemPriorityMap = createPriorityMap()
   var prioritiesSum = 0
   File(FILE_PATH).forEachLine { items ->

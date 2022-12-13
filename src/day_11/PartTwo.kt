@@ -1,10 +1,15 @@
 package day_11
 
 import java.io.File
+import kotlin.system.measureTimeMillis
 
 private const val FILE_PATH = "src/day_11/input.txt"
 
 fun main() {
+  println("Time: ${measureTimeMillis { calculate() }}ms")
+}
+
+private fun calculate() {
   val inputFile = File(FILE_PATH)
   val monkeys = fileToMonkeyList(inputFile)
   val divisors = monkeys.map { it.divisor }.toSet()

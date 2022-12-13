@@ -2,10 +2,15 @@ package day_8
 
 import java.io.File
 import kotlin.math.max
+import kotlin.system.measureTimeMillis
 
 private const val FILE_PATH = "src/day_8/input.txt"
 
 fun main() {
+  println("Time: ${measureTimeMillis { calculate() }}ms")
+}
+
+private fun calculate() {
   val inputFile = File(FILE_PATH)
   val (treesHeight, rows, columns) = readInput(inputFile)
   var maxScore = 0

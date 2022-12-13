@@ -2,10 +2,15 @@ package day_1
 
 import java.io.File
 import kotlin.math.max
+import kotlin.system.measureTimeMillis
 
 private const val FILE_PATH = "src/day_1/input.txt"
 
 fun main() {
+  println("Time: ${measureTimeMillis { calculate() }}ms")
+}
+
+private fun calculate() {
   var maxCalories = -1
   var tempCalories = 0
   File(FILE_PATH).forEachLine {

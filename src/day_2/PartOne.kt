@@ -1,10 +1,15 @@
 package day_2
 
 import java.io.File
+import kotlin.system.measureTimeMillis
 
 private const val FILE_PATH = "src/day_2/input.txt"
 
 fun main() {
+  println("Time: ${measureTimeMillis { calculate() }}ms")
+}
+
+private fun calculate() {
   var totalScore = 0
   val matchCombinationCount = mutableMapOf<String, Int>()
   File(FILE_PATH).forEachLine {

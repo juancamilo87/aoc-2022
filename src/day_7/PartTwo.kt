@@ -1,6 +1,7 @@
 package day_7
 
 import java.io.File
+import kotlin.system.measureTimeMillis
 
 private const val FILE_PATH = "src/day_7/input.txt"
 
@@ -10,6 +11,10 @@ private const val MIN_SPACE = 30000000
 private const val ROOT_DIR = "/"
 
 fun main() {
+  println("Time: ${measureTimeMillis { calculate() }}ms")
+}
+
+private fun calculate() {
   val inputFile = File(FILE_PATH)
   var currentDirectory = ROOT_DIR
   val directoryMap = mutableMapOf<String, Int>()
