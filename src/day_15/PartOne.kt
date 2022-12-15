@@ -1,5 +1,6 @@
 package day_15
 
+import common.Coordinate
 import java.io.File
 import kotlin.math.abs
 import kotlin.system.measureTimeMillis
@@ -26,7 +27,9 @@ private fun calculate() {
   for (x in -6000000..6000000) { //TODO: Do this better.
     if (sensorBeaconPairs.any { pair ->
         val possibleBeacon = Coordinate(x, ROW)
-        pair.second != possibleBeacon && pair.first.distanceTo(pair.second) >= pair.first.distanceTo(possibleBeacon)
+        pair.second != possibleBeacon && pair.first.distanceTo(pair.second) >= pair.first.distanceTo(
+          possibleBeacon
+        )
       }) {
       count++
     }
@@ -34,6 +37,7 @@ private fun calculate() {
 
   println("Impossible places: $count")
 }
-private fun Coordinate.distanceTo(dest: Coordinate) : Int {
+
+private fun Coordinate.distanceTo(dest: Coordinate): Int {
   return abs(x - dest.x) + abs(y - dest.y)
 }

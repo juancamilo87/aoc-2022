@@ -1,5 +1,6 @@
 package day_14
 
+import common.Coordinate
 import java.io.File
 
 object RockManager {

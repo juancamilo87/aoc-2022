@@ -1,5 +1,6 @@
 package day_15
 
+import common.Coordinate
 import java.io.File
 import java.math.BigInteger
 import kotlin.math.abs

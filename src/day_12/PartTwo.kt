@@ -1,5 +1,6 @@
 package day_12
 
+import common.Coordinate
 import java.io.File
 import kotlin.system.measureTimeMillis
 
@@ -12,19 +13,24 @@ fun main() {
 private fun calculate() {
   val inputFile = File(FILE_PATH)
   val (map, start, end) = readFile(inputFile)
-  println("shortest path: ${start.map { try {
-    findShortestPath(map, it, end)
-  } catch (e: RuntimeException) {
-    Int.MAX_VALUE
-  }
-  }.minOf { it }}")
+  println(
+    "shortest path: ${
+      start.map {
+        try {
+          findShortestPath(map, it, end)
+        } catch (e: RuntimeException) {
+          Int.MAX_VALUE
+        }
+      }.minOf { it }
+    }"
+  )
 }
 
-private fun readFile(inputFile: File) : Triple<Array<IntArray>, List<Coordinate>, Coordinate> {
+private fun readFile(inputFile: File): Triple<Array<IntArray>, List<Coordinate>, Coordinate> {
   val resultMap = arrayListOf<IntArray>()
   var y = 0
   val start = mutableListOf<Coordinate>()
-  var end : Coordinate? = null
+  var end: Coordinate? = null
   inputFile.forEachLine { row ->
     val currentRow = IntArray(row.length)
     row.forEachIndexed { x, height ->

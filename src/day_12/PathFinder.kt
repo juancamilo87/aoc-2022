@@ -1,6 +1,8 @@
 package day_12
 
-fun findShortestPath(map: Array<IntArray>, start: Coordinate, end: Coordinate) : Int {
+import common.Coordinate
+
+fun findShortestPath(map: Array<IntArray>, start: Coordinate, end: Coordinate): Int {
   val queue = ArrayDeque<Node>()
   val visitedNodes = mutableSetOf<Coordinate>()
   queue.addLast(Node(start, 0))
@@ -12,35 +14,59 @@ fun findShortestPath(map: Array<IntArray>, start: Coordinate, end: Coordinate) :
     if (currentCoordinate == end) {
       return currentNode.pathLength
     }
-    currentCoordinate.moveUp()?.let {
-      if (canMove(map, currentCoordinate, it) && !visitedNodes.contains(it)) {
-        queue.addLast(Node(it, currentNode.pathLength + 1))
-        visitedNodes.add(it)
+    with(currentCoordinate.moveUp()) {
+      if (inMap(this, map) && canMove(
+          map,
+          currentCoordinate,
+          this
+        ) && !visitedNodes.contains(this)
+      ) {
+        queue.addLast(Node(this, currentNode.pathLength + 1))
+        visitedNodes.add(this)
       }
     }
-    currentCoordinate.moveDown(map)?.let {
-      if (canMove(map, currentCoordinate, it) && !visitedNodes.contains(it)) {
-        queue.addLast(Node(it, currentNode.pathLength + 1))
-        visitedNodes.add(it)
+    with(currentCoordinate.moveDown()) {
+      if (inMap(this, map) && canMove(
+          map,
+          currentCoordinate,
+          this
+        ) && !visitedNodes.contains(this)
+      ) {
+        queue.addLast(Node(this, currentNode.pathLength + 1))
+        visitedNodes.add(this)
       }
     }
-    currentCoordinate.moveLeft()?.let {
-      if (canMove(map, currentCoordinate, it) && !visitedNodes.contains(it)) {
-        queue.addLast(Node(it, currentNode.pathLength + 1))
-        visitedNodes.add(it)
+    with(currentCoordinate.moveLeft()) {
+      if (inMap(this, map) && canMove(
+          map,
+          currentCoordinate,
+          this
+        ) && !visitedNodes.contains(this)
+      ) {
+        queue.addLast(Node(this, currentNode.pathLength + 1))
+        visitedNodes.add(this)
       }
     }
-    currentCoordinate.moveRight(map)?.let {
-      if (canMove(map, currentCoordinate, it) && !visitedNodes.contains(it)) {
-        queue.addLast(Node(it, currentNode.pathLength + 1))
-        visitedNodes.add(it)
+    with(currentCoordinate.moveRight()) {
+      if (inMap(this, map) && canMove(
+          map,
+          currentCoordinate,
+          this
+        ) && !visitedNodes.contains(this)
+      ) {
+        queue.addLast(Node(this, currentNode.pathLength + 1))
+        visitedNodes.add(this)
       }
     }
   }
   throw RuntimeException("No path found")
 }
 
-fun canMove(map: Array<IntArray>, from: Coordinate, to: Coordinate) : Boolean {
+fun inMap(coordinate: Coordinate, map: Array<IntArray>): Boolean {
+  return map.indices.contains(coordinate.y) && map[0].indices.contains(coordinate.x)
+}
+
+fun canMove(map: Array<IntArray>, from: Coordinate, to: Coordinate): Boolean {
   return getHeight(map, to) - getHeight(map, from) <= 1
 }
 
